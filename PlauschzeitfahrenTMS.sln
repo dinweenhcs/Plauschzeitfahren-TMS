@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlauschzeitfahrenTMS", "PlauschzeitfahrenTMS\PlauschzeitfahrenTMS.csproj", "{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Release|iPhone.Build.0 = Release|iPhone
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FBC8DE07-F9CF-419F-9D66-D7D19A91FE92}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
