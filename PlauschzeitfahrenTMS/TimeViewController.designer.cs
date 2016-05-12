@@ -11,8 +11,8 @@ using UIKit;
 
 namespace PlauschzeitfahrenTMS
 {
-	[Register ("ViewController")]
-	partial class ViewController
+	[Register ("TimeViewController")]
+	partial class TimeViewController
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
