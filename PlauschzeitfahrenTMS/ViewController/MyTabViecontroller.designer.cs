@@ -11,11 +11,19 @@ using UIKit;
 
 namespace PlauschzeitfahrenTMS
 {
-	[Register ("MainViewController")]
-	partial class MainViewController
+	[Register ("MyTabViecontroller")]
+	partial class MyTabViecontroller
 	{
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITabBar MyTabbar { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
+			if (MyTabbar != null) {
+				MyTabbar.Dispose ();
+				MyTabbar = null;
+			}
 		}
 	}
 }

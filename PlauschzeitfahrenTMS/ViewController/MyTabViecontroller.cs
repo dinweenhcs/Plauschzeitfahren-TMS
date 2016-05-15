@@ -1,7 +1,8 @@
 #region "Internal Libraries"
 using Foundation;
-using UIKit;
 using System;
+using System.CodeDom.Compiler;
+using UIKit;
 #endregion
 
 #region "Importet Libraries"
@@ -12,13 +13,14 @@ using System;
 
 namespace PlauschzeitfahrenTMS
 {
-	partial class MainViewController : UIViewController
+	partial class MyTabViecontroller : UITabBarController
 	{
+
 		#region "### Properties #############################################"
 		#endregion
 
 		#region "### Constructors #############################################"
-		public MainViewController (IntPtr handle) : base (handle)
+		public MyTabViecontroller (IntPtr handle) : base (handle)
 		{
 		}
 		#endregion
@@ -26,15 +28,20 @@ namespace PlauschzeitfahrenTMS
 		#region "### Deconstructors #############################################"
 		#endregion
 
-		#region "### Viewmethods #############################################"
+		#region "### UI Methods #############################################"
 		public override void ViewDidLoad ()
 		{
+			base.ViewDidLoad ();
+			// Perform any additional setup after loading the view, typically from a nib.
+			Console.WriteLine("MyTabViecontroller.ViewDidLoad()");
 		}
 
 		public override void DidReceiveMemoryWarning ()
 		{
 			base.DidReceiveMemoryWarning ();
 			// Release any cached data, images, etc that aren't in use.
+
+
 		}
 		#endregion
 
@@ -46,7 +53,3 @@ namespace PlauschzeitfahrenTMS
 		#endregion
 	}
 }
-
-
-
-

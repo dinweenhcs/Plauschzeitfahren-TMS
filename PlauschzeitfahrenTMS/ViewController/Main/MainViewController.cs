@@ -2,26 +2,23 @@
 using Foundation;
 using UIKit;
 using System;
-using System.Timers;
+using System.Collections.Generic;
 #endregion
-
 #region "Importet Libraries"
 #endregion
-
 #region "Own Classes"
 #endregion
 
 namespace PlauschzeitfahrenTMS
 {
-	partial class TimeViewController : UIViewController
+	partial class MainViewController : UIViewController
 	{
-
 		#region "### Properties #############################################"
-		private Timer _time;
+		private DatabaseModel _database;
 		#endregion
 
 		#region "### Constructors #############################################"
-		public TimeViewController (IntPtr handle) : base (handle)
+		public MainViewController (IntPtr handle) : base (handle)
 		{
 		}
 		#endregion
@@ -29,38 +26,49 @@ namespace PlauschzeitfahrenTMS
 		#region "### Deconstructors #############################################"
 		#endregion
 
-		#region "### Viewmethods #############################################"
+		#region "### UI Methods #############################################"
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			// Perform any additional setup after loading the view, typically from a nib.
-
-			this.labTime.Text = "ViewDidLoad";	
-			this.labGetTime.Text = "---";	
-
-			this._time = new Timer();
-			this._time.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) => {
-				//Console.WriteLine("-> {0}", e.SignalTime);
-				InvokeOnMainThread (delegate {   
-					labTime.Text = e.SignalTime.ToLongTimeString();
-				});
-				//RunOnUiThread(()=>this.labTime.Text = "A");
-			};
-			this._time.Interval = 1000;
-			this._time.AutoReset = true;
-			this._time.Enabled = true;
+			Console.WriteLine("MainViewController.ViewDidLoad()");
+			_database = new DatabaseModel ();
 
 
-			this.btnGetTime.TouchUpInside += (object sender, EventArgs e) => {
-				this.labGetTime.Text = this.labTime.Text;
-			};
 		}
-			
+
 		public override void DidReceiveMemoryWarning ()
 		{
 			base.DidReceiveMemoryWarning ();
 			// Release any cached data, images, etc that aren't in use.
 		}
+			
+
+
+		partial void btnInitDatabase_touchUpInside (UIButton sender)
+		{
+			_database.deleteDatabase();
+			_database = new DatabaseModel ();
+	
+		}
+
+		partial void btnLoadCompetitors_touchUpInside (UIButton sender)
+		{
+			var participants = new List<Person>(); 
+			participants.Add(new Person(true));
+			participants.Add(new Person(true));
+			participants.Add(new Person(true));
+
+
+			_database.connect();
+			foreach(Person paticipant in participants)
+			{
+				_database._connection.Insert(paticipant);
+			}
+			_database.disconnect();
+
+		}
+
 		#endregion
 
 		#region "### Private Methods #############################################"
@@ -71,3 +79,7 @@ namespace PlauschzeitfahrenTMS
 		#endregion
 	}
 }
+
+
+
+
