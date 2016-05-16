@@ -20,7 +20,7 @@ namespace PlauschzeitfahrenTMS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnOverlayTabbar { get; set; }
+		UIButton btnSync { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -32,7 +32,15 @@ namespace PlauschzeitfahrenTMS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UISwitch swtLockTabBar { get; set; }
+		UILabel labTimer { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel labTitel { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UISwitch swtLockSync { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -42,9 +50,9 @@ namespace PlauschzeitfahrenTMS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView tblTime { get; set; }
 
-		[Action ("valueChanged:")]
+		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void valueChanged (UISwitch sender);
+		UIView viewLineHorizontal { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
@@ -52,9 +60,9 @@ namespace PlauschzeitfahrenTMS
 				btnGetTime.Dispose ();
 				btnGetTime = null;
 			}
-			if (btnOverlayTabbar != null) {
-				btnOverlayTabbar.Dispose ();
-				btnOverlayTabbar = null;
+			if (btnSync != null) {
+				btnSync.Dispose ();
+				btnSync = null;
 			}
 			if (labGetTime != null) {
 				labGetTime.Dispose ();
@@ -64,9 +72,17 @@ namespace PlauschzeitfahrenTMS
 				labTime.Dispose ();
 				labTime = null;
 			}
-			if (swtLockTabBar != null) {
-				swtLockTabBar.Dispose ();
-				swtLockTabBar = null;
+			if (labTimer != null) {
+				labTimer.Dispose ();
+				labTimer = null;
+			}
+			if (labTitel != null) {
+				labTitel.Dispose ();
+				labTitel = null;
+			}
+			if (swtLockSync != null) {
+				swtLockSync.Dispose ();
+				swtLockSync = null;
 			}
 			if (tblParticipant != null) {
 				tblParticipant.Dispose ();
@@ -75,6 +91,10 @@ namespace PlauschzeitfahrenTMS
 			if (tblTime != null) {
 				tblTime.Dispose ();
 				tblTime = null;
+			}
+			if (viewLineHorizontal != null) {
+				viewLineHorizontal.Dispose ();
+				viewLineHorizontal = null;
 			}
 		}
 	}

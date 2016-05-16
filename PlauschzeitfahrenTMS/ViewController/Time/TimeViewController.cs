@@ -4,6 +4,7 @@ using UIKit;
 using System;
 using System.Timers;
 using System.Collections.Generic;
+using CoreGraphics;
 
 
 #endregion
@@ -60,8 +61,7 @@ namespace PlauschzeitfahrenTMS
 				this.tblTime.ReloadData();
 			};
 
-			this.View.BringSubviewToFront (this.btnOverlayTabbar);
-
+		
 			//			table = new UITableView(View.Bounds); // defaults to Plain style
 			tableItems = new List<string>();
 			tableItems.Add("abc");
@@ -73,15 +73,24 @@ namespace PlauschzeitfahrenTMS
 
 			tblTime.Source = new TimeTableViewSource(tableItems);
 			//tblTime.Layer.setBorderColor = 1
-			tblTime.Layer.BorderWidth = 1;
+			//tblTime.Layer.BorderWidth = 1;
+
+
 
 			_db = new DatabaseModel ();
 			ListOfPersones = _db.getParticipantsOfRace ();
-
-
 			tblParticipant.Source = new ParticipantTableViewSource (ListOfPersones);
-			tblParticipant.Layer.BorderWidth = 1;
+			//tblParticipant.Layer.BorderWidth = 1;
+			
 
+			var path = new CGPath ();
+
+			path.AddLines (new CGPoint[]{
+				new CGPoint (100, 200),
+				new CGPoint (160, 100), 
+				new CGPoint (220, 200)});
+
+			path.CloseSubpath ();
 
 
 
@@ -103,37 +112,37 @@ namespace PlauschzeitfahrenTMS
 			base.DidReceiveMemoryWarning ();
 			// Release any cached data, images, etc that aren't in use.
 		}
-		partial void valueChanged (UISwitch sender)
-		{
-			//throw new NotImplementedException ();
-			Console.WriteLine("TimeViewController.valueChanged()");
-
-			Console.WriteLine("IsBeingDismissed:  " + ParentViewController.IsBeingDismissed );
-			Console.WriteLine("IsBeingPresented:  " + ParentViewController.IsBeingPresented );
-			Console.WriteLine("ModalInPopover:  " + ParentViewController.ModalInPopover );
-			Console.WriteLine("ModalPresentationCapturesStatusBarAppearance:  " + ParentViewController.ModalPresentationCapturesStatusBarAppearance );
-			Console.WriteLine("ModalPresentationStyle:  " + ParentViewController.ModalPresentationStyle );
-			Console.WriteLine("ModalTransitionStyle:  " + ParentViewController.ModalTransitionStyle );
-			Console.WriteLine("ModalViewController:  " + ParentViewController.ModalViewController );
-			Console.WriteLine("NavigationController:  " + ParentViewController.NavigationController );
-			Console.WriteLine("NavigationItem:  " + ParentViewController.NavigationItem );
-			Console.WriteLine("NextResponder:  " + ParentViewController.NextResponder );
-			Console.WriteLine("NibName:  " + ParentViewController.NibName );
-			Console.WriteLine("ParentViewController:  " + ParentViewController.ParentViewController );
-			Console.WriteLine("TabBarController:  " + ParentViewController.TabBarController );
-			Console.WriteLine("TabBarItem:  " + ParentViewController.TabBarItem.ToString() );
-			Console.WriteLine("Title:  " + ParentViewController.Title );
-
-			if(this.swtLockTabBar.On){
-				this.View.BringSubviewToFront (this.btnOverlayTabbar);
-				this.btnOverlayTabbar.Hidden = false;
-				Console.WriteLine("TimeViewController.AccessibilityValue=1");
-			} else {
-				this.View.BringSubviewToFront (this.btnOverlayTabbar);
-				this.btnOverlayTabbar.Hidden = true;
-				Console.WriteLine("TimeViewController.AccessibilityValue=0");
-			}
-		}
+//		partial void valueChanged (UISwitch sender)
+//		{
+//			//throw new NotImplementedException ();
+//			Console.WriteLine("TimeViewController.valueChanged()");
+//
+//			Console.WriteLine("IsBeingDismissed:  " + ParentViewController.IsBeingDismissed );
+//			Console.WriteLine("IsBeingPresented:  " + ParentViewController.IsBeingPresented );
+//			Console.WriteLine("ModalInPopover:  " + ParentViewController.ModalInPopover );
+//			Console.WriteLine("ModalPresentationCapturesStatusBarAppearance:  " + ParentViewController.ModalPresentationCapturesStatusBarAppearance );
+//			Console.WriteLine("ModalPresentationStyle:  " + ParentViewController.ModalPresentationStyle );
+//			Console.WriteLine("ModalTransitionStyle:  " + ParentViewController.ModalTransitionStyle );
+//			Console.WriteLine("ModalViewController:  " + ParentViewController.ModalViewController );
+//			Console.WriteLine("NavigationController:  " + ParentViewController.NavigationController );
+//			Console.WriteLine("NavigationItem:  " + ParentViewController.NavigationItem );
+//			Console.WriteLine("NextResponder:  " + ParentViewController.NextResponder );
+//			Console.WriteLine("NibName:  " + ParentViewController.NibName );
+//			Console.WriteLine("ParentViewController:  " + ParentViewController.ParentViewController );
+//			Console.WriteLine("TabBarController:  " + ParentViewController.TabBarController );
+//			Console.WriteLine("TabBarItem:  " + ParentViewController.TabBarItem.ToString() );
+//			Console.WriteLine("Title:  " + ParentViewController.Title );
+//
+//			if(this.swtLockTabBar.On){
+//				this.View.BringSubviewToFront (this.btnOverlayTabbar);
+//				this.btnOverlayTabbar.Hidden = false;
+//				Console.WriteLine("TimeViewController.AccessibilityValue=1");
+//			} else {
+//				this.View.BringSubviewToFront (this.btnOverlayTabbar);
+//				this.btnOverlayTabbar.Hidden = true;
+//				Console.WriteLine("TimeViewController.AccessibilityValue=0");
+//			}
+//		}
 		#endregion
 		#region "### Private Methods #############################################"
 		#endregion
