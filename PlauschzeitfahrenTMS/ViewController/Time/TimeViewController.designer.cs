@@ -16,11 +16,11 @@ namespace PlauschzeitfahrenTMS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnGetTime { get; set; }
+		UIButton btnSplit { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton btnSync { get; set; }
+		UIButton btnStart { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -54,15 +54,19 @@ namespace PlauschzeitfahrenTMS
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIView viewLineHorizontal { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView viewLineVertical { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnGetTime != null) {
-				btnGetTime.Dispose ();
-				btnGetTime = null;
+			if (btnSplit != null) {
+				btnSplit.Dispose ();
+				btnSplit = null;
 			}
-			if (btnSync != null) {
-				btnSync.Dispose ();
-				btnSync = null;
+			if (btnStart != null) {
+				btnStart.Dispose ();
+				btnStart = null;
 			}
 			if (labGetTime != null) {
 				labGetTime.Dispose ();
@@ -95,6 +99,10 @@ namespace PlauschzeitfahrenTMS
 			if (viewLineHorizontal != null) {
 				viewLineHorizontal.Dispose ();
 				viewLineHorizontal = null;
+			}
+			if (viewLineVertical != null) {
+				viewLineVertical.Dispose ();
+				viewLineVertical = null;
 			}
 		}
 	}

@@ -19,10 +19,13 @@ namespace PlauschzeitfahrenTMS
 	{
 
 		#region "### Properties #############################################"
-		private Timer _time;
-		private List<string> tableItems;
+		private Timer _timer;
+		private DateTime _nullTime = new DateTime (0);
+		private DateTime _syncTime;
+		private Boolean _isSyncTime = false;
 		private DatabaseModel _db;
 		private List<Person> ListOfPersones;
+		private List<string> tableItems;
 		#endregion
 		#region "### Constructors #############################################"
 		public TimeViewController (IntPtr handle) : base (handle)
@@ -34,39 +37,99 @@ namespace PlauschzeitfahrenTMS
 		#endregion
 
 		#region "### UI Methods #############################################"
+		public override void ViewWillAppear (bool animated)
+		{
+			Console.WriteLine("TimeViewController.ViewWillAppear()");
+
+		}
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			// Perform any additional setup after loading the view, typically from a nib.
 			Console.WriteLine("TimeViewController.ViewDidLoad()");
 
-			this.labTime.Text = "ViewDidLoad";	
-			this.labGetTime.Text = "---";	
+			// Initialization Timer
+			this._timer = new Timer();
+			this._timer.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) => {
+				//Console.WriteLine("_timer.Elapsed: e.SignalTime={0}", e.SignalTime);
+				InvokeOnMainThread (delegate { 
+					//DateTime dtTmp = e.SignalTime;
+					DateTime dtTmp = DateTime.Now;
+					TimeSpan diff = dtTmp-this._syncTime;
 
-			this._time = new Timer();
-			this._time.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) => {
-				//Console.WriteLine("-> {0}", e.SignalTime);
-				InvokeOnMainThread (delegate {   
-					labTime.Text = e.SignalTime.ToLongTimeString();
+					String m = ((int)diff.TotalMinutes).ToString ();
+					m= m.PadLeft (2,'0');
+
+					String s = diff.Seconds.ToString ();
+					s = s.PadLeft (2,'0');
+
+					this.labTime.Text = dtTmp.ToLongTimeString ();
+					//if (this._syncTime <= this._nullTime){
+					if(this._isSyncTime){
+						this.labTimer.Text = m + ":" + s;
+					} else {
+						this.labTimer.Text = "--:--";
+					}
+					System.Console.Beep();
 				});
 			};
-			this._time.Interval = 1000;
-			this._time.AutoReset = true;
-			this._time.Enabled = true;
+			this._timer.Interval = 1000;
+			this._timer.AutoReset = true;
+			this._timer.Enabled = true;
 
-			this.btnGetTime.TouchUpInside += (object sender, EventArgs e) => {
-				this.labGetTime.Text = this.labTime.Text;
-				//tableItems.Add(this.labTime.Text);
-				this.tableItems.Insert (0, this.labTime.Text);
-				this.tblTime.ReloadData();
+			//Console.WriteLine("a) " + base.ParentViewController );
+			//Console.WriteLine("b) " + this.ParentViewController );
+			//ParentViewController.HidesBottomBarWhenPushed = true;
+			//Console.WriteLine("HidesBottomBarWhenPushed:  " + ParentViewController.HidesBottomBarWhenPushed );
+
+
+			// labTimer
+			//this.labTimer.Text = "--:--";
+
+			// labTime
+			//this.labTime.Text = "--:--";	
+
+			//labGetTime
+			//this.labGetTime.Text = "--:--   (--:--:--)";
+
+			//btnStart
+			this.btnStart.Layer.CornerRadius = 40;
+			this.btnStart.TouchUpInside += (object sender, EventArgs e) => {
+				if (this.swtLockSync.On){
+					this._syncTime = DateTime.Now.AddSeconds (-1);
+					this._isSyncTime = true;
+
+					this.swtLockSync.On = false;
+					this.btnStart.Enabled = false;
+				}
 			};
 
-		
-			//			table = new UITableView(View.Bounds); // defaults to Plain style
+			// btnSplit
+			this.btnSplit.Layer.CornerRadius = 40;
+			this.btnSplit.TouchUpInside += (object sender, EventArgs e) => {
+				if(this._isSyncTime){
+					String tmp =  this.labTimer.Text +"   ("+this.labTime.Text+")";
+					this.labGetTime.Text = tmp;
+					this.tableItems.Insert (0, tmp);
+					this.tblTime.ReloadData();
+				}
+			};
+
+			//swtLockSync
+			this.swtLockSync.TouchUpInside += (object sender, EventArgs e) => {
+				if (swtLockSync.On){
+					this.btnStart.Enabled = true;
+				} else {
+					this.btnStart.Enabled = false;
+				}
+			};
+
+
+			//table = new UITableView(View.Bounds); // defaults to Plain style
 			tableItems = new List<string>();
-			tableItems.Add("abc");
-			tableItems.Add("123");
-			tableItems.Add("xyz");
+			//tableItems.Add("abc");
+			//tableItems.Add("123");
+			//tableItems.Add("xyz");
 			//{"Vegetables","Fruits","Flower Buds","Legumes","Bulbs","Tubers"};
 //			table.Source = new TimeTableViewSource(tableItems);
 //			Add (table);
@@ -75,37 +138,10 @@ namespace PlauschzeitfahrenTMS
 			//tblTime.Layer.setBorderColor = 1
 			//tblTime.Layer.BorderWidth = 1;
 
-
-
 			_db = new DatabaseModel ();
 			ListOfPersones = _db.getParticipantsOfRace ();
 			tblParticipant.Source = new ParticipantTableViewSource (ListOfPersones);
 			//tblParticipant.Layer.BorderWidth = 1;
-			
-
-			var path = new CGPath ();
-
-			path.AddLines (new CGPoint[]{
-				new CGPoint (100, 200),
-				new CGPoint (160, 100), 
-				new CGPoint (220, 200)});
-
-			path.CloseSubpath ();
-
-
-
-		}
-		public override void ViewWillAppear (bool animated)
-		{
-			Console.WriteLine("TimeViewController.ViewWillAppear()");
-
-			Console.WriteLine("a) " + base.ParentViewController );
-			Console.WriteLine("b) " + this.ParentViewController );
-			ParentViewController.HidesBottomBarWhenPushed = true;
-			Console.WriteLine("HidesBottomBarWhenPushed:  " + ParentViewController.HidesBottomBarWhenPushed );
-
-			//ParentViewController.HidesBottomBarWhenPushed = true;
-
 		}
 		public override void DidReceiveMemoryWarning ()
 		{
