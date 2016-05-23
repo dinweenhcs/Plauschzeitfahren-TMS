@@ -5,15 +5,14 @@ using System.Collections.Generic;
 
 namespace PlauschzeitfahrenTMS
 {
-	public class ParticipantTableViewSource: UITableViewSource
+	public class RacerTableViewSource: UITableViewSource
 	{
 		private List<Person> listOfpersons;
-		string CellIdentifier = "TableCell";
+		string CellIdentifier = "RacerTableCell";
 
-		public ParticipantTableViewSource (List<Person> persons)
+		public RacerTableViewSource (List<Person> persons)
 		{
 			this.listOfpersons = persons;
-			Console.WriteLine (this.listOfpersons.Count);
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
@@ -32,6 +31,18 @@ namespace PlauschzeitfahrenTMS
 			cell.TextLabel.Text = PersonItem.firstName + " " + PersonItem.lastName ;
 
 			return cell;
+		}
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			//UIAlertController okAlertController = UIAlertController.Create ("Row Selected", (indexPath.Row).ToString(), UIAlertControllerStyle.Alert);
+			//okAlertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
+			//PresentViewController (okAlertController, true, null);
+			Console.WriteLine ($"********** RowSelected = {indexPath}");
+
+
+			tableView.DeselectRow (indexPath, true);
+
 		}
 	}
 }

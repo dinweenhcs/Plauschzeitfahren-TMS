@@ -106,7 +106,6 @@
     </Compile>
     <Compile Include="Helper\TimestampHelper.cs" />
     <Compile Include="Model\DatabaseModel.cs" />
-    <Compile Include="Model\#SchneewindTemplateClass.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="ViewController\Time\TimeViewController.cs" />
     <Compile Include="ViewController\Time\TimeViewController.designer.cs">
@@ -117,8 +116,20 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewController\Time\TimeTableViewSource.cs" />
-    <Compile Include="ViewController\Time\ParticipantTableViewSource.cs" />
     <Compile Include="Helper\UIGraficsHelper.cs" />
+    <Compile Include="ViewController\Time\RacerTableViewSource.cs" />
+    <Compile Include="ViewController\Person\ParticipantSplitViewController.cs" />
+    <Compile Include="ViewController\Person\ParticipantSplitViewController.designer.cs">
+      <DependentUpon>ParticipantSplitViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\Person\ParticipantDetailViewController.cs" />
+    <Compile Include="ViewController\Person\ParticipantDetailViewController.designer.cs">
+      <DependentUpon>ParticipantDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\Person\ParticipantMasterTableViewController.cs" />
+    <Compile Include="ViewController\Person\ParticipantMasterTableViewController.designer.cs">
+      <DependentUpon>ParticipantMasterTableViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\SQLitePCL.raw.0.8.6\build\Xamarin.iOS10\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.6\build\Xamarin.iOS10\SQLitePCL.raw.targets')" />
@@ -128,5 +139,6 @@
     <Folder Include="Model\" />
     <Folder Include="ViewController\Time\" />
     <Folder Include="ViewController\Main\" />
+    <Folder Include="ViewController\Person\" />
   </ItemGroup>
 </Project>

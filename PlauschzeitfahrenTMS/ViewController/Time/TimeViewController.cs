@@ -6,7 +6,6 @@ using System.Timers;
 using System.Collections.Generic;
 using CoreGraphics;
 
-
 #endregion
 #region "Importet Libraries"
 #endregion
@@ -20,7 +19,6 @@ namespace PlauschzeitfahrenTMS
 
 		#region "### Properties #############################################"
 		private Timer _timer;
-		private DateTime _nullTime = new DateTime (0);
 		private DateTime _syncTime;
 		private Boolean _isSyncTime = false;
 		private DatabaseModel _db;
@@ -64,13 +62,12 @@ namespace PlauschzeitfahrenTMS
 					s = s.PadLeft (2,'0');
 
 					this.labTime.Text = dtTmp.ToLongTimeString ();
-					//if (this._syncTime <= this._nullTime){
 					if(this._isSyncTime){
 						this.labTimer.Text = m + ":" + s;
 					} else {
 						this.labTimer.Text = "--:--";
 					}
-					System.Console.Beep();
+					//System.Console.Beep();
 				});
 			};
 			this._timer.Interval = 1000;
@@ -140,7 +137,7 @@ namespace PlauschzeitfahrenTMS
 
 			_db = new DatabaseModel ();
 			ListOfPersones = _db.getParticipantsOfRace ();
-			tblParticipant.Source = new ParticipantTableViewSource (ListOfPersones);
+			tblRacer.Source = new RacerTableViewSource (ListOfPersones);
 			//tblParticipant.Layer.BorderWidth = 1;
 		}
 		public override void DidReceiveMemoryWarning ()

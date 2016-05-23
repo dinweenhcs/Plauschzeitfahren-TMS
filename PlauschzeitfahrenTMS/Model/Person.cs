@@ -17,7 +17,7 @@ namespace PlauschzeitfahrenTMS
 		public string gender { get; set; }
 		public string firstName { get; set; }
 		public string lastName { get; set; }
-		[Ignore] // = is not stored in Database
+		//[Ignore] // = is not stored in Database
 		public string name { get; }
 		public string birthday { get; set; }
 		public string street { get; set; }
@@ -34,6 +34,7 @@ namespace PlauschzeitfahrenTMS
 			this.creation = DateTime.UtcNow;
 			this.modification = DateTime.UtcNow;
 		}
+
 		public Person(bool p_test){
 			if (p_test)
 			{
@@ -43,6 +44,7 @@ namespace PlauschzeitfahrenTMS
 				this.gender = "male";
 				this.firstName = "Loïc";
 				this.lastName = "Mérat";
+				this.name = this.firstName + " " + this.lastName;
 				this.birthday = "03-09-1918";
 				this.street = "Mont de Drôts";
 				this.number = "9s";

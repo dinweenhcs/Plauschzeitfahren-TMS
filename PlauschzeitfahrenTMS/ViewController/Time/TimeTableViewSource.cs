@@ -9,23 +9,16 @@ namespace PlauschzeitfahrenTMS
 	{
 
 		private List<string> TableItems;
-		string CellIdentifier = "TableCell";
+		string CellIdentifier = "TimeTableCell";
 
 		public TimeTableViewSource (List<string> items)
 		{
-			TableItems = items;
+			this.TableItems = items;
 		}
-
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-//			if (TableItems.Count) {
-//				return TableItems.Count;
-//			} else {
-//				return 0;
-//			};
-			return TableItems.Count;
+			return TableItems?.Count ?? 0;
 		}
-
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell (CellIdentifier);

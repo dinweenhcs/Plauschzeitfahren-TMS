@@ -56,11 +56,11 @@
                                 <rect key="frame" x="0.0" y="312" width="250" height="663"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="697" rowHeight="44" reuseIdentifier="cellTime" accessoryType="checkmark">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="697" rowHeight="44" reuseIdentifier="cellReuseTime">
                                         <rect key="frame" x="0.0" y="22" width="250" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="698" tableViewCell="697">
-                                            <rect key="frame" x="0.0" y="0.0" width="211" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -190,7 +190,7 @@
                         <outlet property="labGetTime" destination="3" id="name-outlet-3"/>
                         <outlet property="btnSplit" destination="8" id="name-outlet-8"/>
                         <outlet property="tblTime" destination="696" id="name-outlet-696"/>
-                        <outlet property="tblParticipant" destination="732" id="name-outlet-732"/>
+                        <outlet property="tblRacer" destination="732" id="name-outlet-732"/>
                         <outlet property="labTitel" destination="911" id="name-outlet-911"/>
                         <outlet property="labTimer" destination="9" id="name-outlet-9"/>
                         <outlet property="btnStart" destination="958" id="name-outlet-958"/>
@@ -272,7 +272,7 @@
         </scene>
         <scene sceneID="743">
             <objects>
-                <viewController id="744" sceneMemberID="viewController">
+                <viewController id="744" sceneMemberID="viewController" customClass="ParticipantDetailViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="741"/>
                         <viewControllerLayoutGuide type="bottom" id="742"/>
@@ -282,15 +282,38 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1031" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="382" y="182" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Vorname" lineBreakMode="tailTruncation" minimumFontSize="10" id="1199" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="59" y="61" width="144" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nachname" lineBreakMode="tailTruncation" minimumFontSize="10" id="1201" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="59" y="95" width="144" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Vorname" borderStyle="roundedRect" minimumFontSize="17" id="1202" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="202" y="57" width="388" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Nachname" borderStyle="roundedRect" minimumFontSize="17" id="1203" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="202" y="95" width="388" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="viewParticipantDetail" destination="745" id="name-outlet-745"/>
+                        <outlet property="inpPrename" destination="1202" id="name-outlet-1202"/>
+                        <outlet property="inpSurname" destination="1203" id="name-outlet-1203"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="746" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -298,7 +321,7 @@
         </scene>
         <scene sceneID="747">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="748" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="748" sceneMemberID="viewController" customClass="ParticipantMasterTableViewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="750">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,6 +333,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="754" tableViewCell="753">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -318,34 +342,21 @@
                             <outlet property="delegate" destination="748" id="752"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="749"/>
+                    <connections>
+                        <outlet property="tblParticipantMaster" destination="750" id="name-outlet-750"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="755" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2569" y="1644"/>
-        </scene>
-        <scene sceneID="756">
-            <objects>
-                <navigationController id="757" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="759">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="748" kind="relationship" relationship="rootViewController" id="758"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="760" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2155" y="1671"/>
+            <point key="canvasLocation" x="2364" y="1602"/>
         </scene>
         <scene sceneID="761">
             <objects>
-                <splitViewController id="762" sceneMemberID="viewController">
+                <splitViewController id="762" sceneMemberID="viewController" customClass="ParticipantSplitViewController">
                     <toolbarItems/>
                     <connections>
-                        <segue destination="757" kind="relationship" relationship="masterViewController" id="763"/>
                         <segue destination="744" kind="relationship" relationship="detailViewController" id="764"/>
+                        <segue id="1297" destination="748" kind="relationship" relationship="masterViewController"/>
                     </connections>
                     <tabBarItem key="tabBarItem" title="Item" id="872"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
